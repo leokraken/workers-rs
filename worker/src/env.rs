@@ -13,7 +13,7 @@ extern "C" {
 }
 
 impl Env {
-    fn get_binding<T: EnvBinding>(&self, name: &str) -> Result<T> {
+    pub fn get_binding<T: EnvBinding>(&self, name: &str) -> Result<T> {
         // Weird rust-analyzer bug is causing it to think Reflect::get is unsafe
         #[allow(unused_unsafe)]
         let binding = unsafe { js_sys::Reflect::get(self, &JsValue::from(name)) }
